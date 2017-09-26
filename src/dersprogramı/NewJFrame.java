@@ -142,6 +142,11 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel6.setText("Alınan Dersler ve Sınav Notları");
 
         bntCeng101.setText("CENG101");
+        bntCeng101.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntCeng101ActionPerformed(evt);
+            }
+        });
 
         btnCeng201.setText("CENG201");
 
@@ -351,6 +356,12 @@ public class NewJFrame extends javax.swing.JFrame {
                 + "10:30-12:20... MATH 101 ---> B414" + "\n"
                 + "14:30-17:20... CENG 101 ---> B414" + "\n");
     }//GEN-LAST:event_btnCumaActionPerformed
+
+    private void bntCeng101ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCeng101ActionPerformed
+        CENG101 cng101 = new CENG101();
+        cng101.setLocationRelativeTo(null);
+        cng101.show();
+    }//GEN-LAST:event_bntCeng101ActionPerformed
 
     /**
      * @param args the command line arguments
