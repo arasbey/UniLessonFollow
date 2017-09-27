@@ -19,11 +19,14 @@ import javax.swing.JOptionPane;
  */
 public class CENG101 extends javax.swing.JFrame {
 
+    String vizeNot = "";
+
     /**
      * Creates new form CENG101
      */
     public CENG101() {
         initComponents();
+
     }
 
     /**
@@ -41,7 +44,7 @@ public class CENG101 extends javax.swing.JFrame {
         odevBtn = new javax.swing.JButton();
         labBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        genelduruBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,8 +66,13 @@ public class CENG101 extends javax.swing.JFrame {
 
         jLabel2.setText("Öğ.Elm :Muhammed Abdullah BÜLBÜL");
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton5.setText("Genel Durum ");
+        genelduruBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        genelduruBtn.setText("Genel Durum ");
+        genelduruBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genelduruBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,7 +89,7 @@ public class CENG101 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(genelduruBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(finalBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
@@ -108,7 +116,7 @@ public class CENG101 extends javax.swing.JFrame {
                     .addComponent(finalBtn)
                     .addComponent(labBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(genelduruBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
 
@@ -116,71 +124,43 @@ public class CENG101 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void vizeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vizeBtnActionPerformed
-        int vizeNot;
-        vizeNot = Integer.parseInt(JOptionPane.showInputDialog("Lütfen Vize Notunuzu giriniz."));
-        File file = new File("C:\\Users\\Calisma\\Documents\\NetBeansProjects\\UniLessonFollow\\dosya.txt");
+        vizeNot = JOptionPane.showInputDialog("Lütfen Vize Notunuzu giriniz.");
+
+        File file = new File("C:\\Users\\Calisma\\Documents\\NetBeansProjects\\UniLessonFollow\\ceng101not.txt");
         if (!file.exists()) {
             try {
                 file.createNewFile();
+                FileWriter fileWriter = new FileWriter(file, false);
+                BufferedWriter bWriter = new BufferedWriter(fileWriter);
+                bWriter.write(vizeNot);
+                bWriter.close();
+
             } catch (IOException ex) {
-                System.out.println("Dosya hatasi");
+                Logger.getLogger(CENG101.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
-        FileWriter fileWriter;
-        try {
-            fileWriter = new FileWriter(file, false);
-            BufferedWriter bWriter = new BufferedWriter(fileWriter);
-            
-            bWriter.write(vizeNot);
-            bWriter.close();
-        } catch (IOException ex) {
-            System.out.println("Dosya hatasi");
-        }
-        
-        
-        
-        
+
     }//GEN-LAST:event_vizeBtnActionPerformed
+
+    private void genelduruBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genelduruBtnActionPerformed
+       GenelDurumFrame gdf;
+        try {
+            gdf = new GenelDurumFrame();
+            gdf.show();
+        } catch (IOException ex) {
+            Logger.getLogger(CENG101.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }//GEN-LAST:event_genelduruBtnActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CENG101.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CENG101.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CENG101.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CENG101.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CENG101().setVisible(true);
-            }
-        });
-    }
-
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton finalBtn;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton genelduruBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton labBtn;
